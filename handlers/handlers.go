@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
@@ -11,7 +12,12 @@ func TodoListHandler(c echo.Context) error {
 }
 
 func GetTodoByIdHandler(c echo.Context) error {
-	return c.String(http.StatusOK, "do hogehoge")
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		return c.String(http.StatusBadRequest, "Invalid ID")
+	}
+	return c.String(http.StatusOK, "todo with ID: "+strconv.Itoa(id))
 }
 
 func CreateTodoHandler(c echo.Context) error {
@@ -19,9 +25,19 @@ func CreateTodoHandler(c echo.Context) error {
 }
 
 func PutTodoByIdHandler(c echo.Context) error {
-	return c.String(http.StatusOK, "update todo with ID:2")
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		return c.String(http.StatusBadRequest, "Invalid ID")
+	}
+	return c.String(http.StatusOK, "update todo with ID: "+strconv.Itoa(id))
 }
 
 func DeleteTodoByIdHandler(c echo.Context) error {
-	return c.String(http.StatusOK, "delete todo with ID:3")
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		return c.String(http.StatusBadRequest, "Invalid ID")
+	}
+	return c.String(http.StatusOK, "delete todo with ID: "+strconv.Itoa(id))
 }
