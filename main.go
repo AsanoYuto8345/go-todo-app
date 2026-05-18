@@ -4,26 +4,19 @@ import (
 	"encoding/json"
 	"fmt"
 	handlers "go-todo-app/handlers"
+	models "go-todo-app/models"
 	"time"
 
 	"github.com/labstack/echo/v4"
 )
 
-type Todo struct {
-	ID        int       `json:"id"`
-	Title     string    `json:"title"`
-	Content   string    `json:"content"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdateAt  time.Time `json:"updated_at"`
-}
-
 func main() {
-	todo1 := Todo{
+	todo1 := models.Todo{
 		ID:        1,
 		Title:     "todo1 Title",
 		Content:   "todo1 content",
 		CreatedAt: time.Now(),
-		UpdateAt:  time.Now(),
+		UpdatedAt: time.Now(),
 	}
 
 	jsonData, err := json.Marshal(todo1)

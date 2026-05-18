@@ -4,6 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
+	models "go-todo-app/models"
+
 	"github.com/labstack/echo/v4"
 )
 
@@ -21,7 +23,13 @@ func GetTodoByIdHandler(c echo.Context) error {
 }
 
 func CreateTodoHandler(c echo.Context) error {
-	return c.String(http.StatusOK, "create new todo!")
+	var todo models.Todo
+
+	if err := c.Bind(&todo); err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid JSON format"})
+	}
+
+	return c.JSON(http.StatusOK, todo)
 }
 
 func PutTodoByIdHandler(c echo.Context) error {
