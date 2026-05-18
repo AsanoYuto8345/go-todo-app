@@ -3,6 +3,7 @@ module go-todo-app
 go 1.26.2
 
 require (
+	github.com/jmoiron/sqlx v1.4.0 // indirect
 	github.com/labstack/echo/v4 v4.15.2 // indirect
 	github.com/labstack/gommon v0.5.0 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
