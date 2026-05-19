@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	repository "go-todo-app/repository"
 	"log"
 
 	"github.com/jmoiron/sqlx"
@@ -29,6 +30,12 @@ func main() {
 	defer db.Close()
 
 	fmt.Println("Successfuly connected to the database")
+
+	todos, err := repository.GetAllTodos(db)
+
+	for _, todo := range todos {
+		fmt.Println(todo)
+	}
 }
 
 // import (
