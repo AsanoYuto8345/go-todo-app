@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go-todo-app/models"
 	repository "go-todo-app/repository"
 	"log"
 
@@ -31,11 +32,18 @@ func main() {
 
 	fmt.Println("Successfuly connected to the database")
 
+	var newTodo models.Todo
+	newTodo.Title = "search girlfriend"
+	newTodo.Content = "タップㇽを使って、彼女候補を探す!"
+
+	repository.CreateTodo(db, newTodo)
+
 	todos, err := repository.GetAllTodos(db)
 
 	for _, todo := range todos {
 		fmt.Println(todo)
 	}
+
 }
 
 // import (
